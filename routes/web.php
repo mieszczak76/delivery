@@ -19,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/deliveries/{id}/edit', 'DeliveryController@edit');
 
 
-Route::get('/', 'DeliveryController@index');
+Route::get('/', 'DeliveryController@index')->name('homepage');
 Route::get('/create', 'DeliveryController@create')->name('delivery.create');
 Route::post('/store', 'DeliveryController@store')->name('delivery.store');

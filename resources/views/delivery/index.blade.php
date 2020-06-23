@@ -1,7 +1,6 @@
 @extends('delivery')
 
 @section('main')
-    <a href="{{ route('delivery.create') }}" class="btn btn-success">Dodaj</a>
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -44,21 +43,21 @@
                             {{$delivery->counting_person}}
                         </td>
                         <td>
-                            {{$delivery->products}}
+                            @foreach($delivery->getProducts() as $product)
+                                {{ $product->getProduct()->name }} <br/>
+                            @endforeach
                         </td>
                         <td>
                             {{$delivery->quantity}}
-                        </td>
-                        <td>
-                            <a href="{{ url("deliveries/{$delivery->id}/edit") }}" class="btn btn-primary">Edytuj</a>
-                        </td>
-                        <td>
-                            <button disabled="disabled">Usuń</button>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+
+            <div class="row">
+                <a href="{{ route('delivery.create') }}" class="btn btn-success">Dodaj</a>
+            </div>
         </div>
     </div>
 @endsection

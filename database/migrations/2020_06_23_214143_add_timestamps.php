@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompaniesTable extends Migration
+class AddTimestamps extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateCompaniesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->id();
+        Schema::table('products_delivery', function (Blueprint $table) {
             $table->timestamps();
-            $table->string('name', 100);
         });
     }
 
@@ -27,6 +25,9 @@ class CreateCompaniesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companies');
+        Schema::table('products_delivery', function (Blueprint $table) {
+            $table->dropColumn('updated_at');
+            $table->dropColumn('created_at');
+        });
     }
 }

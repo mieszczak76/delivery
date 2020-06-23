@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
+use App\ProductsDelivery;
 use Illuminate\Http\Request;
 use App\Delivery;
 use App\Worker;
@@ -18,6 +20,15 @@ class DeliveryController extends Controller
     public function index()
     {
         $deliveries = Delivery::all();
+//
+//        foreach ($deliveries as $delivery) {
+//            var_dump($delivery->getProducts());
+//        }
+//
+//        echo '<pre>';
+//        print_r($deliveries);
+//
+//        exit;
         return view('delivery.index')->with(['deliveries' => $deliveries]);
     }
 
@@ -28,7 +39,12 @@ class DeliveryController extends Controller
      */
     public function create()
     {
-        return view('delivery.create')->with(['workers' => Worker::all(), 'deliveries' => Delivery::all(), 'products' => Product::all() ]);
+        $companies = Company::all();
+        $workers = Worker::all();
+        $products =  Product::all();
+
+
+        return view('delivery.create')->with(['companies' => $companies, 'workers' => $workers, 'products' => $products]);
     }
 
     /**
@@ -39,27 +55,29 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $delivery = new Delivery();
-        $delivery->user_id = $request->recipient;
-        $delivery->supplier_company = $request->supplier_company;
-        $delivery->documents = $request->document;
-        $delivery->delivery_calculated = $request->counting_person;
-        $delivery->counting_person = $request->counting_person;
+        $delivery->worker_id = $request->get('recipient');
+        $delivery->supplier_company_id = $request->get('supplier_company');
+        $delivery->documents = $request->get('document');
+        $delivery->delivery_calculated = $request->get('delivery_calculated');
+        $delivery->counting_person_id = $request->get('counting_person');
+        $delivery->receipt_of_data = $request->get('receipt_of_data');
         $delivery->save();
 
-//        print_r($delivery::get())
 
-//        foreach ($request->products as $product){
-            $delivery_details = new DeliveryDetails([
-                'delivery_id' => 1, 'products_id' => 1, 'quantity' => 1
-            ]);
-//        }
 
-        $delivery_details->save();
-//        return redirect('/');
-//
-//        $v = $request->get('products');
-//        print_r($v);
+        foreach ($request->get('products') as $product) {
+            $productsDelivery = new ProductsDelivery();
+            $productsDelivery->product_id = $product;
+            $productsDelivery->delivery_id = $delivery->id;
+            $productsDelivery->save();
+        }
+
+        return redirect()->route('homepage');
+
+
 
     }
 

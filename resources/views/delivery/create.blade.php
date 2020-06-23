@@ -17,19 +17,13 @@
                     <input class="form-control" type="date" name="receipt_of_data">
                 </div>
                 <div class="form-group">
-                    <label for="supplier_company">
+                    <label for="supplier_company_id">
                         Firma / Dostawca:
                     </label>
                     <select name="supplier_company">
-                        <option value="Abriga">
-                            Abriga
-                        </option>
-                        <option value="Abriga 2">
-                            Abriga 2
-                        </option>
-                        <option value="Abriga 3">
-                            Abriga 3
-                        </option>
+                        @foreach($companies as $company)
+                            <option value="{{$company->id}}">{{$company->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
