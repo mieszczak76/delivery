@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DeliveryController@index');
+Route::get('/deliveries/create', 'DeliveryController@create');

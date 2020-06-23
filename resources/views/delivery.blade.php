@@ -12,7 +12,6 @@
 </head>
 <body>
 <div class="container">
-    <h1>Delivery</h1>
     @yield('main')
 </div>
 <!-- Optional JavaScript -->

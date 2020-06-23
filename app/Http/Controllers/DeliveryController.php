@@ -25,7 +25,7 @@ class DeliveryController extends Controller
      */
     public function create()
     {
-        //
+        return view('delivery.create');
     }
 
     /**

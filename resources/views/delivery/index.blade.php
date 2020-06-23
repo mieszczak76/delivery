@@ -1,6 +1,7 @@
 @extends('delivery')
 
 @section('main')
+    <a href="{{ url('deliveries/create') }}" class="btn btn-success">Dodaj</a>
     <div class="row">
         <div class="col-md-12">
             <table class="table">
