@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', 'DeliveryController@index');
+//Route::get('/deliveries/create', 'DeliveryController@create');
+//Route::post('/deliveries', 'DeliveryController@store');
+//Route::get('/deliveries/{id}/edit', 'DeliveryController@edit');
+
+
 Route::get('/', 'DeliveryController@index');
-Route::get('/deliveries/create', 'DeliveryController@create');
-Route::post('/deliveries', 'DeliveryController@store');
+Route::get('/create', 'DeliveryController@create')->name('delivery.create');
+Route::post('/store', 'DeliveryController@store')->name('delivery.store');

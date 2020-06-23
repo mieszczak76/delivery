@@ -1,7 +1,7 @@
 @extends('delivery')
 
 @section('main')
-    <a href="{{ url('deliveries/create') }}" class="btn btn-success">Dodaj</a>
+    <a href="{{ route('delivery.create') }}" class="btn btn-success">Dodaj</a>
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -50,7 +50,7 @@
                             {{$delivery->quantity}}
                         </td>
                         <td>
-                            <button disabled="disabled">Edytuj</button>
+                            <a href="{{ url("deliveries/{$delivery->id}/edit") }}" class="btn btn-primary">Edytuj</a>
                         </td>
                         <td>
                             <button disabled="disabled">Usuń</button>

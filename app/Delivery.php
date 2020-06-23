@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Delivery extends Model
 {
-    public $timestamps = false;
-    protected $fillable = ['receipt_of_data', 'supplier_company', 'document', 'recipient', 'delivery_calculated', 'counting_person', 'products', 'quantity'];
+    protected $fillable = ['user_id', 'supplier_company', 'documents', 'delivery_calculated', 'counting_person'];
 }

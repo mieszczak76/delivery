@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form action="{{ url('/deliveries') }}" method="post">
+            <form action="{{ route('delivery.store') }}" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="receipt_of_data">
@@ -20,37 +20,72 @@
                     <label for="supplier_company">
                         Firma / Dostawca:
                     </label>
-                    <input class="form-control" type="text" name="supplier_company">
+                    <select name="supplier_company">
+                        <option value="Abriga">
+                            Abriga
+                        </option>
+                        <option value="Abriga 2">
+                            Abriga 2
+                        </option>
+                        <option value="Abriga 3">
+                            Abriga 3
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="document">
                         Dokument przyjęcia:
                     </label>
-                    <input class="form-control" type="text" name="document">
+                    <textarea class="form-control" name="document"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="recipient">
                         Przyjmujący dostawę:
                     </label>
-                    <input class="form-control" type="text" name="recipient">
+                    <select name="recipient">
+                        @foreach($workers as $worker)
+                            <option value="{{ $worker->id }}">
+                                {{ $worker->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="delivery_calculated">
                         Czy dostawa została policzona:
                     </label>
-                    <input class="form-control" type="text" name="delivery_calculated">
+                    <select name="delivery_calculated">
+                        <option value="Tak">
+                            Tak
+                        </option>
+                        <option value="Nie">
+                            Nie
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="counting_person">
                         Osoba która liczyła towar:
                     </label>
-                    <input class="form-control" type="text" name="counting_person">
+                    <select name="counting_person">
+                        @foreach($workers as $worker)
+                            <option value="{{ $worker->id }}">
+                                {{ $worker->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="products">
                         Produkty:
                     </label>
-                    <input class="form-control" type="text" name="products">
+                    <select name="products[]" multiple>
+                        @foreach($products as $product)
+                            <option value="{{ $product->id }}">
+                                {{ $product->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="quantity">
