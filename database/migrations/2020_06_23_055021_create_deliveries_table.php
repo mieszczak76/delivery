@@ -14,8 +14,15 @@ class CreateDeliveriesTable extends Migration
     public function up()
     {
         Schema::create('deliveries', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
+            $table->date('receipt_of_data');
+            $table->string('supplier_company');
+            $table->string('document');
+            $table->string('recipient');
+            $table->string('delivery_calculated');
+            $table->string('counting_person');
+            $table->string('products');
+            $table->integer('quantity');
         });
     }
 
