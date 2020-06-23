@@ -47,7 +47,7 @@ class DeliveryController extends Controller
         $delivery->counting_person = $request->counting_person;
         $delivery->save();
 
-        print_r($delivery::get())
+//        print_r($delivery::get())
 
 //        foreach ($request->products as $product){
             $delivery_details = new DeliveryDetails([
