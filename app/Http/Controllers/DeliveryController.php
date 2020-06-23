@@ -36,7 +36,19 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $delivery = new Delivery([
+            'receipt_of_data' => $request->input('receipt_of_data'),
+            'supplier_company' => $request->input('supplier_company'),
+            'document' => $request->input('document'),
+            'recipient' => $request->input('recipient'),
+            'delivery_calculated' => $request->input('delivery_calculated'),
+            'counting_person' => $request->input('counting_person'),
+            'products' => $request->input('products'),
+            'quantity' => $request->input('quantity')
+        ]);
+        $delivery->save();
+        return redirect('/');
+
     }
 
     /**

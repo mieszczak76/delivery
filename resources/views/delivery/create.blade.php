@@ -8,7 +8,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form action="" method="post">
+            <form action="{{ url('/deliveries') }}" method="post">
+                @csrf
                 <div class="form-group">
                     <label for="receipt_of_data">
                         Data przyjęcia dostawy:
