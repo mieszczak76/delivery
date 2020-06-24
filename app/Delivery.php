@@ -11,11 +11,22 @@ class Delivery extends Model
         'supplier_company_id',
         'documents',
         'delivery_calculated',
-        'counting_person_id ',
+        'counting_person_id',
+        'quantity',
     ];
 
     public function getProducts()
     {
         return ProductsDelivery::where('delivery_id', $this->id)->get();
+    }
+
+    public function getWorkerName()
+    {
+        return Worker::where('id', $this->id)->first()->name;
+    }
+
+    public function getCompanyName()
+    {
+        return Company::where('id', $this->id)->first()->name;
     }
 }

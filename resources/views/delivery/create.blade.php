@@ -85,7 +85,7 @@
                     <label for="quantity">
                         Ilość:
                     </label>
-                    <input class="form-control" type="number" name="quantity">
+                    <textarea class="form-control" name="quantity"></textarea>
                 </div>
                 <button class="btn btn-primary" type="submit">Zapisz</button>
             </form>

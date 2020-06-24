@@ -64,20 +64,20 @@ class DeliveryController extends Controller
         $delivery->delivery_calculated = $request->get('delivery_calculated');
         $delivery->counting_person_id = $request->get('counting_person');
         $delivery->receipt_of_data = $request->get('receipt_of_data');
+        $delivery->quantity = $request->get('quantity');
         $delivery->save();
 
-
-
-        foreach ($request->get('products') as $product) {
-            $productsDelivery = new ProductsDelivery();
-            $productsDelivery->product_id = $product;
-            $productsDelivery->delivery_id = $delivery->id;
-            $productsDelivery->save();
+        if (is_array($request->get('products')) || is_object($request->get('products')))
+        {
+            foreach ($request->get('products') as $product) {
+                $productsDelivery = new ProductsDelivery();
+                $productsDelivery->product_id = $product;
+                $productsDelivery->delivery_id = $delivery->id;
+                $productsDelivery->save();
+            }
         }
 
         return redirect()->route('homepage');
-
-
 
     }
 

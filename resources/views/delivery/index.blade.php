@@ -15,7 +15,6 @@
                     <th>Osoba która liczyła towar</th>
                     <th>Produkty</th>
                     <th>Ilość</th>
-                    <th colspan="2">Akcja</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,19 +27,19 @@
                             {{$delivery->receipt_of_data}}
                         </td>
                         <td>
-                            {{$delivery->supplier_company}}
+                            {{$delivery->getCompanyName()}}
                         </td>
                         <td>
-                            {{$delivery->document}}
+                            {{$delivery->documents}}
                         </td>
                         <td>
-                            {{$delivery->recipient}}
+                            {{$delivery->getWorkerName()}}
                         </td>
                         <td>
                             {{$delivery->delivery_calculated}}
                         </td>
                         <td>
-                            {{$delivery->counting_person}}
+                            {{$delivery->getWorkerName()}}
                         </td>
                         <td>
                             @foreach($delivery->getProducts() as $product)
@@ -54,10 +53,11 @@
                 @endforeach
                 </tbody>
             </table>
-
-            <div class="row">
-                <a href="{{ route('delivery.create') }}" class="btn btn-success">Dodaj</a>
-            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('delivery.create') }}" class="btn btn-success">Dodaj</a>
         </div>
     </div>
 @endsection

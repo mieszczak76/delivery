@@ -11,7 +11,7 @@
     <title>Delivery</title>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     @yield('main')
 </div>
 <!-- Optional JavaScript -->
