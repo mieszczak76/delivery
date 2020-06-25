@@ -3,9 +3,22 @@
 @section('main')
     <div class="row">
         <div class="col-md-12">
-            <h2 class="display-6">Dodaj</h2>
+            <h2 class="display-6">Dodaj dostawę</h2>
         </div>
     </div>
+    @if($errors->any())
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>
+                            {{ $error }}
+                        </li>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <form action="{{ route('delivery.store') }}" method="post">
@@ -20,7 +33,7 @@
                     <label for="supplier_company_id">
                         Firma / Dostawca:
                     </label>
-                    <select name="supplier_company">
+                    <select class="custom-select" name="supplier_company">
                         @foreach($companies as $company)
                             <option value="{{$company->id}}">{{$company->name}}</option>
                         @endforeach
@@ -36,7 +49,7 @@
                     <label for="recipient">
                         Przyjmujący dostawę:
                     </label>
-                    <select name="recipient">
+                    <select class="custom-select" name="recipient">
                         @foreach($workers as $worker)
                             <option value="{{ $worker->id }}">
                                 {{ $worker->name }}
@@ -48,7 +61,7 @@
                     <label for="delivery_calculated">
                         Czy dostawa została policzona:
                     </label>
-                    <select name="delivery_calculated">
+                    <select class="custom-select" name="delivery_calculated">
                         <option value="Tak">
                             Tak
                         </option>
@@ -61,7 +74,7 @@
                     <label for="counting_person">
                         Osoba która liczyła towar:
                     </label>
-                    <select name="counting_person">
+                    <select class="custom-select" name="counting_person">
                         @foreach($workers as $worker)
                             <option value="{{ $worker->id }}">
                                 {{ $worker->name }}
@@ -73,7 +86,7 @@
                     <label for="products">
                         Produkty:
                     </label>
-                    <select name="products[]" multiple>
+                    <select class="custom-select" name="products[]" multiple>
                         @foreach($products as $product)
                             <option value="{{ $product->id }}">
                                 {{ $product->name }}

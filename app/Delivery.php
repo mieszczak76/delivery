@@ -22,11 +22,23 @@ class Delivery extends Model
 
     public function getWorkerName()
     {
-        return Worker::where('id', $this->id)->first()->name;
+        $worker = Worker::where('id', $this->id)->first();
+        if($worker != null) {
+            return $worker->name;
+        }
+        else {
+            return 'Brak';
+        }
     }
 
     public function getCompanyName()
     {
-        return Company::where('id', $this->id)->first()->name;
+        $company = Company::where('id', $this->id)->first();
+        if($company != null) {
+            return $company->name;
+        }
+        else {
+            return 'Brak';
+        }
     }
 }

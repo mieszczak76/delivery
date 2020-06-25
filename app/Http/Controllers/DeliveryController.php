@@ -56,6 +56,11 @@ class DeliveryController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'recipient' => 'required',
+            'document' => 'required',
+            'quantity' => 'required',
+        ]);
 
         $delivery = new Delivery();
         $delivery->worker_id = $request->get('recipient');
@@ -77,7 +82,7 @@ class DeliveryController extends Controller
             }
         }
 
-        return redirect()->route('homepage');
+        return redirect()->route('homepage')->with('success', 'Dostawa dodana');
 
     }
 
