@@ -2,17 +2,19 @@
 
 @section('main')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <h2 class="display-6">Lista dostaw</h2>
         </div>
     </div>
     @if(session()->get('success'))
         <div class="row">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>{{ session()->get('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="col-md-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session()->get('success') }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             </div>
         </div>
     @endif

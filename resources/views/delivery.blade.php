@@ -10,7 +10,7 @@
 
     <title>Delivery</title>
 </head>
-<body style="padding-top: 15px;">
+<body style="padding: 15px 0;">
 <div class="container-fluid">
     @yield('main')
 </div>
